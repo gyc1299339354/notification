@@ -9,7 +9,7 @@ const conf = require('./conf/conf');
 const SocketManage = require('./lib/socket');
 
 
-// Routing
+// test view
 app.use(express.static(__dirname + '/test/public'));
 
 let socketManage = new SocketManage(httpServer);
