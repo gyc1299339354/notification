@@ -6,12 +6,12 @@ const express = require('express');
 let app = express();
 const httpServer = require('http').createServer(app);
 const conf = require('./conf/conf');
-const SocketManage = require('./lib/socket');
+const Notification = require('./lib');
 
 
 // test view
 app.use(express.static(__dirname + '/test/public'));
 
-let socketManage = new SocketManage(httpServer);
+let notification = new Notification(httpServer);
 
 httpServer.listen(conf.port);
