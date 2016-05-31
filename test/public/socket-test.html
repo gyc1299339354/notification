@@ -12,12 +12,24 @@
 <script src="http://cdn.bootcss.com/jquery/3.0.0-rc1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/socket.io/1.4.6/socket.io.min.js"></script>
 <script>
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+
+    var userid = getQueryString('userid') || 'testuserid';
+
     var socket = io();
     socket.on('connect', function () {
         socket.on('hello', function (data) {
             console.log(data);
-            socket.emit('whoami', 'testuserid');
+            socket.emit('whoami', userid);
+        }).on('test', function (data) {
+            console.log('test event : ', data);
         });
     });
+
 </script>
 </html>

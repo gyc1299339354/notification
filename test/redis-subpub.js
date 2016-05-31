@@ -9,7 +9,7 @@ let msg_count = 0;
 
 sub.on('subscribe', function (channel, count) {
   //console.log('here is the sub client : ', sub);
-  
+
   console.log('sub.on subscribe count : ', count);
   console.log('sub.on subscribe channel : ', channel);
   pub.publish('a nice channel', 'I am sending a message.');

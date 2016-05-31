@@ -6,6 +6,7 @@
 const redis = require('redis');
 const conf = require('../conf/conf');
 const uuid = require('uuid');
+const log = require('./log');
 
 class RedisClient {
 
@@ -21,7 +22,7 @@ class RedisClient {
 
     //error dealing
     this.client.on('error', (error)=> {
-      console.log(`redis client with uuid ( ${this.uuid} ) on server ( ${conf.redis.host} ) has caught an error : ${error}`);
+      log(` redis client with uuid ( ${this.uuid} ) on server ( ${conf.redis.host} ) has caught an error : ${error}`);
     });
   }
 }

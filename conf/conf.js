@@ -2,6 +2,8 @@
 /**
  * Created by neo on 16/5/25.
  */
+const uuid = require('uuid');
+
 module.exports = {
   /**
    * 是否是生产环境
@@ -22,17 +24,20 @@ module.exports = {
     //
     password: null,
     //redis需要订阅的channel
-    channel: process.env.CHANNEL || 'notification channel',
-    //redis 存放channel的hash表 的key
-    // field 为了userid
-    //value 默认channel
-    hash_key: 'channels'
+    channel: 'io:notification:' + (process.env.CHANNEL || uuid.v4()),
+    //公共订阅号
+    public_channel: 'io:notification:public',
+    //用户订阅channel表 存入set集合中 value 默认channel
+    set_key_pre: 'io:',
+    //redis 用户订阅channel表 失效时间
+    timeout: 604800
   },
   /**
    * subscribe message type定义
    */
-  message_type: {
-    broadcast: 1,
-    send_notification: 2
-  }
+  //message_type: {
+  //  broadcast: 1,
+  //  send_notification: 2
+  //}
+  userid:'testuserid', data:{eventName:'hello', msg:'hello !'}
 };
