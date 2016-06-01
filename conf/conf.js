@@ -24,11 +24,11 @@ module.exports = {
     //
     password: null,
     //redis需要订阅的channel
-    channel: 'io:notification:' + (process.env.CHANNEL || uuid.v4()),
+    channel: 'socket:entity:' + (process.env.CHANNEL || uuid.v4()),
     //公共订阅号
-    public_channel: 'io:notification:public',
+    public_channel: 'socket:entity:public',
     //用户订阅channel表 存入set集合中 value 默认channel
-    set_key_pre: 'io:',
+    set_key_pre: 'socket:',
     //redis 用户订阅channel表 失效时间
     timeout: 604800
   },
@@ -39,11 +39,4 @@ module.exports = {
   //  broadcast: 1,
   //  send_notification: 2
   //}
-  formate: {
-    userid: 'testuserid',
-    data: {
-      eventname: 'hello',
-      msg: 'hello !'
-    }
-  }
 };

@@ -21,7 +21,7 @@ class SubClient extends RedisClient {
       const _message = (typeof message === 'string') ? JSON.parse(message) : message;
       log(`sub client with uuid ( ${this.uuid}  ) has got a message from channel ( ${channel} ) : `, _message);
 
-      (_message.userid) ? this.socketManage.sendNotification(_message.userid, _message.data) : this.socketManage.broadcast(_message.data);
+      (_message.userId) ? this.socketManage.sendNotification(_message.userId, _message.data) : this.socketManage.broadcast(_message.data);
     });
 
     //订阅channel

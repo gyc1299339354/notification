@@ -15,6 +15,7 @@
     "date-util": "^1.2.1",
     "express": "^4.13.4",
     "redis": "^2.6.0-2",
+    "restify": "^4.1.0",
     "socket-redis": "^0.1.7",
     "socket.io": "^1.4.6",
     "uuid": "^2.0.2"

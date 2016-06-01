@@ -3,8 +3,8 @@
  * Created by neo on 16/5/25.
  * arguement named 'data' in message going to be sent by using function 'sendNotification'/'broadcast' must be formated  like :
  * {
- *  eventname: '',
- *  msg: {
+ *  eventName: '',
+ *  message: {
  *    xxx: xxx
  *  }
  * }
@@ -41,20 +41,20 @@ class SocketManage {
   }
 
   //发射器
-  sendNotification(userid, data) {
-    const tempsocket = this.socketMap.get(userid) || null;
+  sendNotification(userId, data) {
+    const tempsocket = this.socketMap.get(userId) || null;
     if (tempsocket) {
-      tempsocket.emit(data.eventname, data.msg);
-      log(`${userid} is be sent a notification : `, data.msg);
+      tempsocket.emit(data.eventName, data.message);
+      log(`${userId} is be sent a notification : `, data.message);
     }
     return;
   }
 
   //广播器
   broadcast(data) {
-    const _msg = data.msg;
+    const _msg = data.message;
     for (const tempsocket of this.socketMap.values()) {
-      tempsocket.emit(data.eventname, _msg);
+      tempsocket.emit(data.eventName, _msg);
     }
   }
 
@@ -69,9 +69,9 @@ class SocketManage {
     });
 
     //用户信息 初始化
-    socket.on('whoami', (userid)=> {
-      log(` ${id} with userid ( ${userid} ) emit * whoami * `);
-      const temp_key = conf.redis.set_key_pre + userid;
+    socket.on('whoami', (userId)=> {
+      log(` ${id} with userId ( ${userId} ) emit * whoami * `);
+      const temp_key = conf.redis.set_key_pre + userId;
       async.waterfall([
           (cb)=> {
             //清理残渣
@@ -85,10 +85,10 @@ class SocketManage {
             log(`存储的时候爆炸了 `, error);
             return;
           } else {
-            log(`搞定 ${id} ==> ( ${userid} ) !`, result);
+            log(`搞定 ${id} ==> ( ${userId} ) !`, result);
             //监听connection : 丢进Map缓存
-            id = userid;
-            this.socketMap.set(userid, socket);
+            id = userId;
+            this.socketMap.set(userId, socket);
             //TODO 回复下?
           }
         });
