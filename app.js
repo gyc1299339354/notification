@@ -14,13 +14,4 @@ app.use(express.static(__dirname + '/test/public'));
 
 let notification = new Notification(httpServer);
 
-//app.post('/publish', (req, res, next)=> {
-//  const body = req.body;
-//  if(!body.channel){
-//    return res.send();
-//  }
-//  notification.pubclient()
-//
-//});
-
 httpServer.listen(conf.port);

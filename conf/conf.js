@@ -39,5 +39,11 @@ module.exports = {
   //  broadcast: 1,
   //  send_notification: 2
   //}
-  userid:'testuserid', data:{eventName:'hello', msg:'hello !'}
+  formate: {
+    userid: 'testuserid',
+    data: {
+      eventname: 'hello',
+      msg: 'hello !'
+    }
+  }
 };

@@ -3,7 +3,7 @@
  * Created by neo on 16/5/25.
  * arguement named 'data' in message going to be sent by using function 'sendNotification'/'broadcast' must be formated  like :
  * {
- *  eventName: '',
+ *  eventname: '',
  *  msg: {
  *    xxx: xxx
  *  }
@@ -44,7 +44,7 @@ class SocketManage {
   sendNotification(userid, data) {
     const tempsocket = this.socketMap.get(userid) || null;
     if (tempsocket) {
-      tempsocket.emit(data.eventName, data.msg);
+      tempsocket.emit(data.eventname, data.msg);
       log(`${userid} is be sent a notification : `, data.msg);
     }
     return;
@@ -54,7 +54,7 @@ class SocketManage {
   broadcast(data) {
     const _msg = data.msg;
     for (const tempsocket of this.socketMap.values()) {
-      tempsocket.emit(data.eventName, _msg);
+      tempsocket.emit(data.eventname, _msg);
     }
   }
 
